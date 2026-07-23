@@ -1,0 +1,322 @@
+/* ============================================================
+   ANIMATII — bazate pe principiile animations.dev (Emil Kowalski)
+   - animam doar transform + opacity (GPU)
+   - easing ease-out pentru aparitii
+   - durate scurte, will-change acolo unde conteaza
+   - respecta prefers-reduced-motion
+   - hover doar pe dispozitive cu mouse real
+   ============================================================ */
+:root {
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ---------- Reveal la scroll ---------- */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity 0.7s var(--ease-out-quart),
+    transform 0.7s var(--ease-out-quart);
+}
+.reveal--up {
+  transform: translateY(38px);
+}
+.reveal--left {
+  transform: translateX(-38px);
+}
+.reveal--right {
+  transform: translateX(38px);
+}
+.reveal--zoom {
+  transform: scale(0.95);
+}
+.reveal.is-vizibil {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Header: micsorare la scroll ---------- */
+.header {
+  transition:
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+.header__inner {
+  transition: height 0.25s var(--ease-out-quart);
+}
+.header.is-scrolled {
+  box-shadow: 0 6px 22px rgba(22, 50, 79, 0.12);
+}
+.header.is-scrolled .header__inner {
+  height: 58px;
+}
+
+/* ---------- Hero: intrare in cascada ---------- */
+.hero__content > * {
+  opacity: 0;
+  animation: heroIn 0.85s var(--ease-out-quart) forwards;
+}
+.hero__content > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.hero__content > *:nth-child(2) {
+  animation-delay: 0.22s;
+}
+.hero__content > *:nth-child(3) {
+  animation-delay: 0.34s;
+}
+.hero__content > *:nth-child(4) {
+  animation-delay: 0.46s;
+}
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Ken Burns lent pe imaginea hero */
+.hero__bg img {
+  animation: kenburns 26s ease-in-out infinite;
+}
+@keyframes kenburns {
+  0% {
+    transform: scale(1.04);
+  }
+  50% {
+    transform: scale(1.13);
+  }
+  100% {
+    transform: scale(1.04);
+  }
+}
+
+/* Forme plutitoare decorative (doar transform, fara blur greu) */
+.hero__forme {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.forma {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+.forma--1 {
+  width: 300px;
+  height: 300px;
+  top: -70px;
+  right: 6%;
+  border: 2px solid rgba(74, 163, 223, 0.22);
+  animation: plutire 14s ease-in-out infinite;
+}
+.forma--2 {
+  width: 170px;
+  height: 170px;
+  bottom: -50px;
+  right: 24%;
+  border: 2px solid rgba(74, 163, 223, 0.16);
+  animation: plutire 11s ease-in-out infinite reverse;
+}
+.forma--3 {
+  width: 90px;
+  height: 90px;
+  top: 34%;
+  right: 3%;
+  background: rgba(74, 163, 223, 0.12);
+  animation: plutire 9s ease-in-out infinite;
+}
+@keyframes plutire {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-24px);
+  }
+}
+
+/* ---------- Banda de statistici ---------- */
+.statistici {
+  background: linear-gradient(120deg, var(--albastru-inchis) 0%, var(--albastru) 100%);
+  color: var(--alb);
+  padding: 46px 0;
+}
+.statistici__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat {
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: transform, opacity;
+  transition:
+    opacity 0.6s var(--ease-out-quart),
+    transform 0.6s var(--ease-out-quart);
+}
+.stat.is-vizibil {
+  opacity: 1;
+  transform: none;
+}
+.stat__numar {
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  font-weight: 800;
+  color: var(--albastru-accent);
+  line-height: 1;
+}
+.stat__eticheta {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #cfdae6;
+  letter-spacing: 0.3px;
+}
+
+/* ---------- Timeline: linia creste la intrare ---------- */
+.timeline::before {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.9s var(--ease-out-quart);
+}
+.timeline.is-vizibil::before {
+  transform: scaleY(1);
+}
+.timeline-item__perioada {
+  transition: transform 0.2s var(--ease-out-quart);
+}
+
+/* ---------- Butoane: efect de stralucire + apasare ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: translateX(-160%) skewX(-20deg);
+  pointer-events: none;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Carduri servicii: zoom pe imagine ---------- */
+.serviciu-card__media {
+  overflow: hidden;
+}
+.serviciu-card__media img {
+  transition: transform 0.5s var(--ease-out-quart);
+}
+.serviciu-card__icon {
+  transition: transform 0.3s var(--ease-out-quart);
+}
+
+/* ---------- Buton flotant "inapoi sus" ---------- */
+.scroll-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--albastru-mediu);
+  color: var(--alb);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--umbra-hover);
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity 0.25s var(--ease-out-quart),
+    transform 0.25s var(--ease-out-quart),
+    background 0.2s ease;
+}
+.scroll-top.is-vizibil {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.scroll-top svg {
+  width: 22px;
+  height: 22px;
+}
+.scroll-top:active {
+  transform: scale(0.94);
+}
+
+/* ---------- Hover: doar pe dispozitive cu mouse real ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover::after {
+    transform: translateX(260%) skewX(-20deg);
+    transition: transform 0.6s var(--ease-out-quart);
+  }
+  .serviciu-card:hover .serviciu-card__media img {
+    transform: scale(1.07);
+  }
+  .serviciu-card:hover .serviciu-card__icon {
+    transform: translateY(-4px) rotate(-6deg);
+  }
+  .scroll-top:hover {
+    background: var(--albastru);
+    transform: translateY(-3px);
+  }
+}
+
+/* ---------- Statistici responsive ---------- */
+@media (max-width: 640px) {
+  .statistici__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 16px;
+  }
+}
+
+/* ---------- Respecta miscarea redusa ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .stat {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero__content > * {
+    opacity: 1;
+    animation: none;
+  }
+  .hero__bg img,
+  .forma {
+    animation: none;
+  }
+  .timeline::before {
+    transform: scaleY(1);
+    transition: none;
+  }
+  .scroll-top {
+    transition: none;
+  }
+  .btn::after {
+    display: none;
+  }
+}
