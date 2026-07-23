@@ -20,7 +20,6 @@ export default function ImagineCuFallback({ src, alt, eticheta, prioritate = fal
       src={src}
       alt={alt}
       loading={prioritate ? 'eager' : 'lazy'}
-      fetchPriority={prioritate ? 'high' : 'auto'}
       onError={() => setEroare(true)}
     />
   )
