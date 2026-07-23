@@ -498,6 +498,27 @@ ul {
   gap: 48px;
   align-items: start;
 }
+.despre__profil {
+  float: right;
+  width: 190px;
+  margin: 0 0 18px 26px;
+  text-align: center;
+}
+.despre__profil img,
+.despre__profil .img-fallback {
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--umbra);
+  border: 4px solid var(--fundal-card);
+  display: block;
+}
+.despre__profil figcaption {
+  margin-top: 12px;
+  font-weight: 600;
+  color: var(--albastru);
+}
 .despre__text p {
   font-size: 1.08rem;
   color: var(--gri-inchis);
@@ -764,6 +785,10 @@ a.contact-detaliu__val:hover {
   .contact__grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+  .despre__profil {
+    float: none;
+    margin: 0 auto 24px;
   }
 }
 
