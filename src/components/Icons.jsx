@@ -116,6 +116,24 @@ export function IconFlux(props) {
   )
 }
 
+export function IconFabrica(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 21h18M4 21V10l5 3V10l5 3V7l5 3v11" />
+      <path d="M8 21v-4M13 21v-4M18 21v-4" />
+    </svg>
+  )
+}
+
+export function IconReclamatii(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      <path d="M12 8v4M12 15h.01" />
+    </svg>
+  )
+}
+
 // Selector pentru iconita serviciului dupa cheia din content.js
 export function IconServiciu({ tip, ...props }) {
   switch (tip) {
@@ -131,6 +149,10 @@ export function IconServiciu({ tip, ...props }) {
       return <IconTools {...props} />
     case 'flux':
       return <IconFlux {...props} />
+    case 'fabrica':
+      return <IconFabrica {...props} />
+    case 'reclamatii':
+      return <IconReclamatii {...props} />
     default:
       return <IconCheck {...props} />
   }

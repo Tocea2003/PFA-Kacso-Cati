@@ -56,6 +56,8 @@ Pune pozele tale in folderul **`public/images/`**, pastrand aceleasi nume de fis
 | `serviciu-rework.jpg`       | card „Rework si suport productie"     |
 | `serviciu-rapoarte.jpg`     | card „Documentatie si raportare"      |
 | `serviciu-logistica.jpg`    | card „Organizare activitati logistice"|
+| `serviciu-suport.jpg`       | card „Suport calitate companii ind."  |
+| `serviciu-reclamatii.jpg`   | card „Gestionarea reclamatiilor"      |
 
 Pana pui pozele reale, se afiseaza automat un placeholder stilizat (nimic stricat).
 

@@ -82,9 +82,25 @@ export const servicii = [
     id: 'logistica',
     titlu: 'Organizare activități logistice',
     descriere:
-      'Organizarea și monitorizarea activităților logistice și asistență în gestionarea reclamațiilor interne și externe.',
+      'Organizarea și monitorizarea activităților logistice, a fluxurilor de materiale, a depozitului și a inventarului.',
     imagine: '/images/serviciu-logistica.jpg',
     icon: 'flux',
+  },
+  {
+    id: 'suport',
+    titlu: 'Suport calitate pentru companii industriale',
+    descriere:
+      'Sprijin dedicat pentru departamentele de calitate din companiile industriale, adaptat cerințelor și standardelor fiecărui client.',
+    imagine: '/images/serviciu-suport.jpg',
+    icon: 'fabrica',
+  },
+  {
+    id: 'reclamatii',
+    titlu: 'Gestionarea reclamațiilor',
+    descriere:
+      'Asistență în gestionarea reclamațiilor interne și externe: analiza cauzelor, urmărirea acțiunilor corective și comunicarea rezultatelor.',
+    imagine: '/images/serviciu-reclamatii.jpg',
+    icon: 'reclamatii',
   },
 ]
 

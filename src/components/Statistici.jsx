@@ -2,7 +2,7 @@ import { useReveal, useCountUp } from '../hooks/animatii.js'
 
 const statistici = [
   { numar: 20, sufix: '+', eticheta: 'Ani de experiență' },
-  { numar: 6, sufix: '', eticheta: 'Servicii oferite' },
+  { numar: 8, sufix: '', eticheta: 'Servicii oferite' },
   { text: 'PFA', eticheta: 'Autorizată din 2024' },
   { text: 'ISO 9001', eticheta: 'Standard de calitate' },
 ]

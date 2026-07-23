@@ -233,10 +233,11 @@
 }
 
 /* ---------- Carduri servicii: zoom pe imagine ---------- */
-.serviciu-card__media {
+/* Doar poza se decupeaza la zoom — iconita iese in afara, deci NU aici */
+.serviciu-card__poza {
   overflow: hidden;
 }
-.serviciu-card__media img {
+.serviciu-card__poza img {
   transition: transform 0.5s var(--ease-out-quart);
 }
 .serviciu-card__icon {

@@ -19,7 +19,9 @@ export default function Servicii() {
             <Reveal key={s.id} variant="up" delay={i * 90}>
               <article className="serviciu-card">
                 <div className="serviciu-card__media">
-                  <ImagineCuFallback src={s.imagine} alt={s.titlu} eticheta="Poza demo" />
+                  <div className="serviciu-card__poza">
+                    <ImagineCuFallback src={s.imagine} alt={s.titlu} eticheta="Poza demo" />
+                  </div>
                   <span className="serviciu-card__icon">
                     <IconServiciu tip={s.icon} />
                   </span>
