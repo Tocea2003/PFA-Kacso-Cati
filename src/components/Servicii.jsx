@@ -1,4 +1,4 @@
-import { servicii } from '../data/content.js'
+import { servicii, serviciiSubtitlu } from '../data/content.js'
 import ImagineCuFallback from './ImagineCuFallback.jsx'
 import { IconServiciu } from './Icons.jsx'
 import Reveal from './Reveal.jsx'
@@ -11,8 +11,7 @@ export default function Servicii() {
           Servicii
         </Reveal>
         <Reveal as="p" className="sectiune-subtitlu" delay={80}>
-          Servicii complete de verificare si control calitate pentru piese si componente,
-          adaptate cerintelor din industria auto.
+          {serviciiSubtitlu}
         </Reveal>
 
         <div className="servicii__grid">

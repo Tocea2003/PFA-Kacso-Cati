@@ -105,6 +105,17 @@ export function IconTools(props) {
   )
 }
 
+export function IconFlux(props) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="4" width="6" height="5" rx="1" />
+      <rect x="15" y="4" width="6" height="5" rx="1" />
+      <rect x="9" y="15" width="6" height="5" rx="1" />
+      <path d="M6 9v3h12V9M12 12v3" />
+    </svg>
+  )
+}
+
 // Selector pentru iconita serviciului dupa cheia din content.js
 export function IconServiciu({ tip, ...props }) {
   switch (tip) {
@@ -116,6 +127,10 @@ export function IconServiciu({ tip, ...props }) {
       return <IconRuler {...props} />
     case 'report':
       return <IconReport {...props} />
+    case 'tools':
+      return <IconTools {...props} />
+    case 'flux':
+      return <IconFlux {...props} />
     default:
       return <IconCheck {...props} />
   }

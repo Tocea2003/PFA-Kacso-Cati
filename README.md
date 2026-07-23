@@ -47,13 +47,15 @@ Nu trebuie sa modifici componentele pentru a schimba textele.
 
 Pune pozele tale in folderul **`public/images/`**, pastrand aceleasi nume de fisier:
 
-| Fisier                         | Unde apare               |
-| ------------------------------ | ------------------------ |
-| `hero.jpg`                     | imaginea mare de sus     |
-| `serviciu-control.jpg`         | card „Control calitate"  |
-| `serviciu-sortare.jpg`         | card „Sortare si triere" |
-| `serviciu-dimensional.jpg`     | card „Inspectie dimens." |
-| `serviciu-rapoarte.jpg`        | card „Rapoarte calitate" |
+| Fisier                      | Unde apare                            |
+| --------------------------- | ------------------------------------- |
+| `hero.jpg`                  | imaginea mare de sus                  |
+| `serviciu-sortare.jpg`      | card „Sortare si control calitate"    |
+| `serviciu-dimensional.jpg`  | card „Verificare vizuala si dimens."  |
+| `serviciu-control.jpg`      | card „Identificare defecte"           |
+| `serviciu-rework.jpg`       | card „Rework si suport productie"     |
+| `serviciu-rapoarte.jpg`     | card „Documentatie si raportare"      |
+| `serviciu-logistica.jpg`    | card „Organizare activitati logistice"|
 
 Pana pui pozele reale, se afiseaza automat un placeholder stilizat (nimic stricat).
 

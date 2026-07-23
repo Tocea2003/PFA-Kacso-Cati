@@ -1,4 +1,4 @@
-import { experienta } from '../data/content.js'
+import { experienta, experientaSubtitlu } from '../data/content.js'
 import { useReveal } from '../hooks/animatii.js'
 import Reveal from './Reveal.jsx'
 
@@ -9,11 +9,10 @@ export default function Experienta() {
     <section className="sectiune sectiune--gri" id="experienta">
       <div className="container">
         <Reveal as="h2" className="sectiune-titlu">
-          Experienta profesionala
+          Experiență profesională
         </Reveal>
         <Reveal as="p" className="sectiune-subtitlu" delay={80}>
-          Peste 18 ani in domeniul calitatii, de la tehnician si auditor de produs
-          pana la director de calitate.
+          {experientaSubtitlu}
         </Reveal>
 
         <div className={`timeline ${vizibil ? 'is-vizibil' : ''}`} ref={refTimeline}>

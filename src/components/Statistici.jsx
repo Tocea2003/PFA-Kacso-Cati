@@ -1,10 +1,10 @@
 import { useReveal, useCountUp } from '../hooks/animatii.js'
 
 const statistici = [
-  { numar: 18, sufix: '+', eticheta: 'Ani de experienta' },
-  { numar: 4, sufix: '', eticheta: 'Servicii oferite' },
+  { numar: 20, sufix: '+', eticheta: 'Ani de experiență' },
+  { numar: 6, sufix: '', eticheta: 'Servicii oferite' },
+  { text: 'PFA', eticheta: 'Autorizată din 2024' },
   { text: 'ISO 9001', eticheta: 'Standard de calitate' },
-  { text: 'DQ200 TCU', eticheta: 'Specializare sortare' },
 ]
 
 function StatNumar({ numar, sufix, activ }) {

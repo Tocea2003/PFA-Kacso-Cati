@@ -456,6 +456,12 @@ ul {
   color: var(--gri-inchis);
   margin-bottom: 20px;
 }
+.despre__inchidere {
+  border-left: 3px solid var(--albastru-mediu);
+  padding-left: 16px;
+  font-style: italic;
+  color: var(--albastru) !important;
+}
 .despre__box {
   background: var(--fundal-card);
   border-radius: var(--radius);
@@ -539,6 +545,28 @@ ul {
 .contact-detaliu__val {
   font-weight: 600;
   color: var(--antracit);
+}
+
+.contact-oficial {
+  margin-top: 26px;
+  padding: 16px 18px;
+  background: rgba(43, 108, 176, 0.06);
+  border: 1px solid rgba(43, 108, 176, 0.18);
+  border-radius: var(--radius-mic);
+  font-size: 0.9rem;
+  color: var(--gri-inchis);
+  line-height: 1.7;
+}
+.contact-oficial span {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gri);
+  margin-bottom: 6px;
+}
+.contact-oficial strong {
+  color: var(--albastru);
 }
 
 .contact-form {
@@ -628,9 +656,33 @@ ul {
   font-weight: 400;
   color: var(--gri-deschis);
 }
+.footer__valori {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 14px;
+}
+.footer__valori span {
+  position: relative;
+  font-size: 0.85rem;
+  color: var(--albastru-accent);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.footer__valori span:not(:last-child)::after {
+  content: '•';
+  position: absolute;
+  right: -12px;
+  color: var(--gri);
+}
 .footer__contact {
   font-size: 0.92rem;
   line-height: 1.9;
+}
+.footer__oficial {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--gri);
 }
 .footer__contact a:hover {
   color: var(--albastru-accent);

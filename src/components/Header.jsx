@@ -4,7 +4,7 @@ import { IconCheck } from './Icons.jsx'
 
 const linkuri = [
   { href: '#servicii', text: 'Servicii' },
-  { href: '#experienta', text: 'Experienta' },
+  { href: '#experienta', text: 'Experiență' },
   { href: '#despre', text: 'Despre' },
   { href: '#contact', text: 'Contact' },
 ]
@@ -29,7 +29,7 @@ export default function Header() {
           </span>
           <span>
             {contact.nume}
-            <small>Verificare piese • PFA</small>
+            <small>Control calitate • PFA</small>
           </span>
         </a>
 

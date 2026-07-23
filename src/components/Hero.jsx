@@ -24,7 +24,7 @@ export default function Hero() {
       </div>
 
       <div className="container hero__content">
-        <span className="hero__eyebrow">Control calitate • Industria auto</span>
+        <span className="hero__eyebrow">{hero.eyebrow}</span>
         <h1 className="hero__titlu">
           {hero.titlu} <br />
           <span className="hero__nume">{contact.nume}</span>
