@@ -10,6 +10,8 @@
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
   --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  /* Overshoot subtil (back.out) pentru un feel mai viu */
+  --ease-back: cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
 /* ---------- Reveal la scroll ---------- */
@@ -17,11 +19,11 @@
   opacity: 0;
   will-change: transform, opacity;
   transition:
-    opacity 0.7s var(--ease-out-quart),
-    transform 0.7s var(--ease-out-quart);
+    opacity 0.55s var(--ease-out-quart),
+    transform 0.6s var(--ease-back);
 }
 .reveal--up {
-  transform: translateY(38px);
+  transform: translateY(34px) scale(0.97);
 }
 .reveal--left {
   transform: translateX(-38px);
@@ -30,7 +32,7 @@
   transform: translateX(38px);
 }
 .reveal--zoom {
-  transform: scale(0.95);
+  transform: scale(0.94);
 }
 .reveal.is-vizibil {
   opacity: 1;
@@ -168,10 +170,21 @@
   opacity: 1;
   transform: none;
 }
+.stat.is-vizibil .stat__numar {
+  animation: statPop 0.6s var(--ease-back) both;
+}
+@keyframes statPop {
+  0% {
+    transform: scale(0.82);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .stat__numar {
-  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  font-size: clamp(2rem, 4.6vw, 3rem);
   font-weight: 800;
-  color: var(--albastru-accent);
+  color: #7cc0ff;
   line-height: 1;
 }
 .stat__eticheta {
@@ -300,6 +313,9 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .stat.is-vizibil .stat__numar {
+    animation: none;
   }
   .hero__content > * {
     opacity: 1;

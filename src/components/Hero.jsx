@@ -3,7 +3,7 @@ import ImagineCuFallback from './ImagineCuFallback.jsx'
 import { IconWhatsApp } from './Icons.jsx'
 
 export default function Hero() {
-  const linkWA = construiesteLinkWhatsApp({ nume: '', telefon: '', mesaj: '' })
+  const linkWA = construiesteLinkWhatsApp()
 
   return (
     <section className="hero" id="top">

@@ -149,9 +149,12 @@ export const inchidere =
 // ============================================================
 //  Ajutor: construiește linkul WhatsApp cu mesaj pre-completat.
 // ============================================================
-export function construiesteLinkWhatsApp({ nume, telefon, mesaj }) {
-  const text =
-    `Bună ziua, sunt ${nume || '(nume)'} (${telefon || '(telefon)'}).\n` +
-    `Aș dori o ofertă pentru verificare / control calitate:\n${mesaj || ''}`
-  return `https://wa.me/${contact.telefonWhatsApp}?text=${encodeURIComponent(text)}`
+export function construiesteLinkWhatsApp({ nume, email, mesaj } = {}) {
+  const linii = [
+    nume && nume.trim() ? `Bună ziua, sunt ${nume.trim()}.` : 'Bună ziua,',
+  ]
+  if (email && email.trim()) linii.push(`Email: ${email.trim()}`)
+  linii.push('Aș dori o ofertă pentru verificare / control calitate:')
+  if (mesaj && mesaj.trim()) linii.push(mesaj.trim())
+  return `https://wa.me/${contact.telefonWhatsApp}?text=${encodeURIComponent(linii.join('\n'))}`
 }

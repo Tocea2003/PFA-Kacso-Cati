@@ -4,7 +4,7 @@ import { IconPhone, IconMail, IconPin, IconWhatsApp } from './Icons.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Contact() {
-  const [date, setDate] = useState({ nume: '', telefon: '', mesaj: '' })
+  const [date, setDate] = useState({ nume: '', email: '', mesaj: '' })
   const [erori, setErori] = useState({})
 
   function actualizeaza(e) {
@@ -16,7 +16,8 @@ export default function Contact() {
   function valideaza() {
     const er = {}
     if (!date.nume.trim()) er.nume = 'Introduceți numele.'
-    if (!date.telefon.trim()) er.telefon = 'Introduceți un număr de telefon.'
+    if (date.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(date.email.trim()))
+      er.email = 'Adresa de email nu pare validă.'
     if (!date.mesaj.trim()) er.mesaj = 'Descrieți ce produse doriți verificate.'
     return er
   }
@@ -102,17 +103,17 @@ export default function Contact() {
                 {erori.nume && <div className="camp__eroare">{erori.nume}</div>}
               </div>
 
-              <div className={`camp ${erori.telefon ? 'camp--eroare' : ''}`}>
-                <label htmlFor="telefon">Telefon *</label>
+              <div className={`camp ${erori.email ? 'camp--eroare' : ''}`}>
+                <label htmlFor="email">Email <span className="camp__opt">(opțional)</span></label>
                 <input
-                  id="telefon"
-                  name="telefon"
-                  type="tel"
-                  value={date.telefon}
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={date.email}
                   onChange={actualizeaza}
-                  placeholder="07xx xxx xxx"
+                  placeholder="nume@exemplu.ro"
                 />
-                {erori.telefon && <div className="camp__eroare">{erori.telefon}</div>}
+                {erori.email && <div className="camp__eroare">{erori.email}</div>}
               </div>
 
               <div className={`camp ${erori.mesaj ? 'camp--eroare' : ''}`}>

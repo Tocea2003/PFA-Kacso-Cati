@@ -2,27 +2,32 @@
    VARIABILE — paleta industriala (albastru / gri metalic)
    ============================================================ */
 :root {
-  --albastru-inchis: #16324f;
-  --albastru: #1e3a5f;
-  --albastru-mediu: #2b6cb0;
-  --albastru-accent: #4aa3df;
-  --antracit: #1f2733;
-  --gri-inchis: #3a4553;
-  --gri: #6b7686;
-  --gri-deschis: #aab4c0;
-  --fundal: #f4f6f8;
+  /* Paleta „Trust & Authority” — albastru viu + accent verde */
+  --albastru-inchis: #1e3a8a;
+  --albastru: #1e40af;
+  --albastru-mediu: #2563eb;
+  --albastru-accent: #60a5fa;
+  --verde-ok: #16a34a;
+  --verde-inchis: #15803d;
+
+  --antracit: #172033;
+  --gri-inchis: #334155;
+  --gri: #64748b;
+  --gri-deschis: #cbd5e1;
+  --fundal: #eff6ff;
   --fundal-card: #ffffff;
   --alb: #ffffff;
-  --verde-ok: #2f9e5f;
+  --border: #bfdbfe;
 
-  --umbra: 0 4px 14px rgba(22, 50, 79, 0.08);
-  --umbra-hover: 0 10px 28px rgba(22, 50, 79, 0.16);
-  --radius: 12px;
-  --radius-mic: 8px;
+  --umbra: 0 4px 16px rgba(30, 64, 175, 0.1);
+  --umbra-hover: 0 16px 40px rgba(30, 64, 175, 0.2);
+  --radius: 14px;
+  --radius-mic: 9px;
   --max-latime: 1140px;
   --tranzitie: 0.25s ease;
 
-  --font: 'Segoe UI', 'Inter', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --font: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --font-titlu: 'Sora', 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
 /* ============================================================
@@ -46,6 +51,18 @@ body {
   background: var(--fundal);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.hero__titlu,
+.sectiune-titlu,
+.stat__numar,
+.serviciu-card__titlu,
+.header__logo {
+  font-family: var(--font-titlu);
+  letter-spacing: -0.015em;
 }
 
 img {
@@ -115,11 +132,12 @@ ul {
 }
 
 .btn--primar {
-  background: var(--albastru-mediu);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: var(--alb);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
 }
 .btn--primar:hover {
-  background: var(--albastru);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   transform: translateY(-2px);
 }
 
@@ -265,6 +283,7 @@ ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   min-height: 560px;
 }
 .hero__overlay {
@@ -272,10 +291,10 @@ ul {
   inset: 0;
   z-index: 1;
   background: linear-gradient(
-    100deg,
-    rgba(22, 50, 79, 0.92) 0%,
-    rgba(22, 50, 79, 0.78) 45%,
-    rgba(31, 39, 51, 0.55) 100%
+    105deg,
+    rgba(30, 58, 138, 0.94) 0%,
+    rgba(30, 64, 175, 0.82) 45%,
+    rgba(37, 99, 235, 0.48) 100%
   );
 }
 .hero__content {
@@ -285,15 +304,26 @@ ul {
   padding: 60px 0;
 }
 .hero__eyebrow {
-  display: inline-block;
-  background: rgba(74, 163, 223, 0.2);
-  color: var(--albastru-accent);
-  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(22, 163, 74, 0.18);
+  color: #4ade80;
+  padding: 7px 16px;
   border-radius: 40px;
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   margin-bottom: 20px;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+.hero__eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.25);
 }
 .hero__titlu {
   font-size: clamp(2rem, 5.5vw, 3.4rem);
@@ -346,20 +376,21 @@ ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 .serviciu-card__icon {
   position: absolute;
   bottom: -22px;
   left: 22px;
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
-  background: var(--albastru-mediu);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: var(--alb);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--umbra);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
 }
 .serviciu-card__icon svg {
   width: 24px;
@@ -422,7 +453,7 @@ ul {
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--albastru-mediu);
-  background: rgba(43, 108, 176, 0.1);
+  background: rgba(37, 99, 235, 0.1);
   padding: 3px 10px;
   border-radius: 20px;
   margin-bottom: 8px;
@@ -492,8 +523,8 @@ ul {
   font-weight: 500;
 }
 .tag--accent {
-  background: rgba(43, 108, 176, 0.08);
-  border-color: rgba(43, 108, 176, 0.3);
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.3);
   color: var(--albastru-mediu);
 }
 
@@ -526,7 +557,7 @@ ul {
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: rgba(43, 108, 176, 0.1);
+  background: rgba(37, 99, 235, 0.1);
   color: var(--albastru-mediu);
   display: flex;
   align-items: center;
@@ -550,8 +581,8 @@ ul {
 .contact-oficial {
   margin-top: 26px;
   padding: 16px 18px;
-  background: rgba(43, 108, 176, 0.06);
-  border: 1px solid rgba(43, 108, 176, 0.18);
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.18);
   border-radius: var(--radius-mic);
   font-size: 0.9rem;
   color: var(--gri-inchis);
@@ -593,6 +624,11 @@ ul {
   color: var(--gri-inchis);
   margin-bottom: 6px;
 }
+.camp__opt {
+  font-weight: 400;
+  color: var(--gri);
+  font-size: 0.82rem;
+}
 .camp input,
 .camp textarea {
   width: 100%;
@@ -609,7 +645,7 @@ ul {
 .camp textarea:focus {
   outline: none;
   border-color: var(--albastru-mediu);
-  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.12);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 .camp textarea {
   resize: vertical;
