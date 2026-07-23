@@ -114,6 +114,12 @@ export const experientaSubtitlu =
 
 export const experienta = [
   {
+    rol: 'Administrator asociație',
+    firma: 'Asociația „Tu vei reuși”, Cisnădie',
+    perioada: '2025 — Prezent',
+    descriere: 'Coordonarea activităților asociației.',
+  },
+  {
     rol: 'Director Calitate și Logistică',
     firma: 'Euchner SRL, Cisnădie',
     perioada: '2016 — Prezent',
@@ -126,12 +132,6 @@ export const experienta = [
     perioada: '2006 — 2016',
     descriere:
       'Controlul calității, analiza rebuturilor, verificarea și sortarea produselor și identificarea neconformităților.',
-  },
-  {
-    rol: 'Administrator asociație',
-    firma: 'Asociația „Tu vei reuși”, Cisnădie',
-    perioada: '2025 — Prezent',
-    descriere: 'Coordonarea activităților asociației.',
   },
 ]
 
