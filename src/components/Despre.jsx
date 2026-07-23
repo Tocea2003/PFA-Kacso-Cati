@@ -15,7 +15,7 @@ export default function Despre() {
           <Reveal className="despre__text" variant="left">
             <figure className="despre__profil">
               <ImagineCuFallback
-                src={`${import.meta.env.BASE_URL}images/profil.jpg`}
+                src={`${import.meta.env.BASE_URL}images/profil.jpeg`}
                 alt="Kacso Cati"
                 eticheta="Poză de profil"
               />
