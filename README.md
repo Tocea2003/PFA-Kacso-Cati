@@ -72,8 +72,40 @@ git branch -M main
 git push -u origin main
 ```
 
-## Hosting (mai tarziu)
+## Publicare pe GitHub Pages (automat)
 
-- **GitHub Pages:** seteaza `base: '/NUME-REPO/'` in `vite.config.js`, apoi configureaza deploy.
+Deploy-ul este deja configurat in `.github/workflows/deploy.yml`. Dupa ce ai facut push:
+
+1. In repo pe GitHub: **Settings → Pages**
+2. La **Source** alege **GitHub Actions** (nu „Deploy from a branch")
+3. Gata. La fiecare push pe `main`, site-ul se reconstruieste si se publica singur.
+
+Adresa va fi: `https://UTILIZATOR.github.io/NUME-REPO/`
+
+Progresul deploy-ului se vede in tab-ul **Actions**.
+
+### De ce nu trebuie sa setezi `base` manual
+
+`vite.config.js` deduce automat subfolderul din numele repo-ului
+(variabila `GITHUB_REPOSITORY` pe care o seteaza GitHub Actions), iar caile
+imaginilor folosesc `import.meta.env.BASE_URL`. Deci merge indiferent cum
+numesti repo-ul, fara sa modifici nimic.
+
+### Cand legi un domeniu propriu
+
+Pe domeniu propriu site-ul sta in radacina, deci `base` trebuie sa fie `/`.
+Adauga in workflow, la pasul de build:
+
+```yaml
+      - name: Construieste site-ul
+        run: npm run build
+        env:
+          BASE_PATH: /
+```
+
+Apoi in **Settings → Pages → Custom domain** pui domeniul cumparat.
+
+## Alternative de hosting
+
 - **Netlify / Vercel:** conecteaza repo-ul; comanda build `npm run build`, folder publicare `dist`.
-- **Domeniu propriu:** se leaga la hostingul ales dupa cumparare.
+  (Acolo `base` ramane `/` automat, nu trebuie configurat nimic.)

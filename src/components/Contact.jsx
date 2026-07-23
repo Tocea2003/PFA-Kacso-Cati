@@ -36,7 +36,14 @@ export default function Contact() {
   const detalii = [
     { icon: <IconPhone />, label: 'Telefon', val: contact.telefon, href: `tel:+${contact.telefonWhatsApp}` },
     { icon: <IconMail />, label: 'Email', val: contact.email, href: `mailto:${contact.email}` },
-    { icon: <IconPin />, label: 'Sediu', val: contact.adresa, href: null },
+    {
+      icon: <IconPin />,
+      label: 'Sediu',
+      val: contact.adresa,
+      href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.adresa)}`,
+      extern: true,
+      titlu: 'Vezi adresa pe Google Maps',
+    },
   ]
 
   return (
@@ -63,7 +70,14 @@ export default function Contact() {
                 <div>
                   <div className="contact-detaliu__label">{d.label}</div>
                   {d.href ? (
-                    <a className="contact-detaliu__val" href={d.href}>
+                    <a
+                      className="contact-detaliu__val"
+                      href={d.href}
+                      title={d.titlu}
+                      {...(d.extern
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                    >
                       {d.val}
                     </a>
                   ) : (

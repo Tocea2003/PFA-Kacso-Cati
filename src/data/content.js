@@ -24,13 +24,17 @@ export const contact = {
 // Valorile afișate ca laitmotiv (din prezentarea PFA).
 export const valori = ['Profesionalism', 'Seriozitate', 'Calitate']
 
+// Prefix pentru imagini. Necesar ca site-ul să funcționeze și pe GitHub Pages,
+// unde e servit dintr-un subfolder (/nume-repo/). Local, BASE_URL este „/”.
+const poza = (nume) => `${import.meta.env.BASE_URL}images/${nume}`
+
 // --- Secțiunea Hero ---
 export const hero = {
   eyebrow: 'PFA autorizată • Cisnădie, jud. Sibiu',
   titlu: 'Verificare și control calitate produse',
   subtitlu:
     'Peste 20 de ani de experiență în controlul calității, sortarea și verificarea produselor, analiza defectelor și suport pentru procesele de producție — servicii adaptate nevoilor fiecărui client.',
-  imagine: '/images/hero.jpg',
+  imagine: poza('hero.jpg'),
 }
 
 // --- Servicii ---
@@ -43,7 +47,7 @@ export const servicii = [
     titlu: 'Sortare și control calitate',
     descriere:
       'Sortarea și controlul calității pieselor și produselor, separarea produselor conforme de neconformități, pe loturi. Experiență inclusiv pe produse complexe, de tip DQ200 TCU.',
-    imagine: '/images/serviciu-sortare.jpg',
+    imagine: poza('serviciu-sortare.jpg'),
     icon: 'sort',
   },
   {
@@ -51,7 +55,7 @@ export const servicii = [
     titlu: 'Verificare vizuală și dimensională',
     descriere:
       'Verificarea vizuală a produselor și măsurarea dimensiunilor cu instrumente de precizie (șubler, micrometru), conform specificațiilor și toleranțelor cerute.',
-    imagine: '/images/serviciu-dimensional.jpg',
+    imagine: poza('serviciu-dimensional.jpg'),
     icon: 'ruler',
   },
   {
@@ -59,7 +63,7 @@ export const servicii = [
     titlu: 'Identificare defecte și neconformități',
     descriere:
       'Analiza defectelor, identificarea neconformităților și a cauzelor acestora, pentru a preveni reapariția lor.',
-    imagine: '/images/serviciu-control.jpg',
+    imagine: poza('serviciu-control.jpg'),
     icon: 'check',
   },
   {
@@ -67,7 +71,7 @@ export const servicii = [
     titlu: 'Rework și suport producție',
     descriere:
       'Reprelucrarea produselor și suport direct pentru procesele de producție, pentru menținerea fluxului și a standardelor de calitate.',
-    imagine: '/images/serviciu-rework.jpg',
+    imagine: poza('serviciu-rework.jpg'),
     icon: 'tools',
   },
   {
@@ -75,7 +79,7 @@ export const servicii = [
     titlu: 'Documentație și raportare calitate',
     descriere:
       'Întocmirea documentației și a rapoartelor de calitate, evidența rezultatelor și a acțiunilor corective aplicate.',
-    imagine: '/images/serviciu-rapoarte.jpg',
+    imagine: poza('serviciu-rapoarte.jpg'),
     icon: 'report',
   },
   {
@@ -83,7 +87,7 @@ export const servicii = [
     titlu: 'Organizare activități logistice',
     descriere:
       'Organizarea și monitorizarea activităților logistice, a fluxurilor de materiale, a depozitului și a inventarului.',
-    imagine: '/images/serviciu-logistica.jpg',
+    imagine: poza('serviciu-logistica.jpg'),
     icon: 'flux',
   },
   {
@@ -91,7 +95,7 @@ export const servicii = [
     titlu: 'Suport calitate pentru companii industriale',
     descriere:
       'Sprijin dedicat pentru departamentele de calitate din companiile industriale, adaptat cerințelor și standardelor fiecărui client.',
-    imagine: '/images/serviciu-suport.jpg',
+    imagine: poza('serviciu-suport.jpg'),
     icon: 'fabrica',
   },
   {
@@ -99,7 +103,7 @@ export const servicii = [
     titlu: 'Gestionarea reclamațiilor',
     descriere:
       'Asistență în gestionarea reclamațiilor interne și externe: analiza cauzelor, urmărirea acțiunilor corective și comunicarea rezultatelor.',
-    imagine: '/images/serviciu-reclamatii.jpg',
+    imagine: poza('serviciu-reclamatii.jpg'),
     icon: 'reclamatii',
   },
 ]

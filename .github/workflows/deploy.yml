@@ -1,0 +1,56 @@
+name: Deploy pe GitHub Pages
+
+on:
+  # La fiecare push pe main site-ul se reconstruieste si se publica automat.
+  push:
+    branches: [main]
+  # Permite pornirea manuala din tab-ul Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Daca pornesc doua deploy-uri, il pastreaza pe cel mai nou.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descarca codul
+        uses: actions/checkout@v4
+
+      - name: Pregateste Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Configureaza GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Instaleaza dependintele
+        run: npm ci
+
+      - name: Construieste site-ul
+        run: npm run build
+
+      - name: Incarca rezultatul build-ului
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publica pe GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

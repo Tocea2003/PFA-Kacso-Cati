@@ -593,6 +593,14 @@ ul {
   font-weight: 600;
   color: var(--antracit);
 }
+a.contact-detaliu__val {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+a.contact-detaliu__val:hover {
+  color: var(--albastru-mediu);
+  text-decoration: underline;
+}
 
 .contact-oficial {
   margin-top: 26px;
