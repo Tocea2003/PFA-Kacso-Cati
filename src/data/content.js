@@ -47,7 +47,7 @@ export const servicii = [
     titlu: 'Sortare și control calitate',
     descriere:
       'Sortarea și controlul calității pieselor și produselor, separarea produselor conforme de neconformități, pe loturi. Experiență inclusiv pe produse complexe, de tip DQ200 TCU.',
-    imagine: poza('serviciu-sortare.jpg'),
+    imagine: poza('DSG11-scaled.jpg'),
     icon: 'sort',
   },
   {
