@@ -18,7 +18,7 @@ export const contact = {
   // Date din certificatul de înregistrare (Registrul Comerțului).
   cui: '58723180',
   caen: 'CAEN 8299 – Activități de servicii suport pentru întreprinderi',
-  inregistrata: '27.05.2024',
+  inregistrata: '27.05.2026',
 }
 
 // Valorile afișate ca laitmotiv (din prezentarea PFA).
