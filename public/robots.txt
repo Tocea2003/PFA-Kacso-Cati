@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tocea2003.github.io/PFA-Kacso-Cati/sitemap.xml
