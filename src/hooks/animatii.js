@@ -38,7 +38,11 @@ export function useReveal({ threshold = 0.15 } = {}) {
 // Numerele care "urca" de la 0 la tinta, cu easing ease-out (cubic).
 // Porneste doar cand `activ` devine true.
 export function useCountUp(tinta, activ, durata = 1500) {
-  const [valoare, setValoare] = useState(0)
+  // La pre-randare (fara `window`) pornim direct de la valoarea finala, ca in
+  // HTML-ul livrat sa apara „20+”, nu „0+”. In browser animatia ramane de la 0.
+  const [valoare, setValoare] = useState(() =>
+    typeof window === 'undefined' ? tinta : 0
+  )
 
   useEffect(() => {
     if (!activ) return
