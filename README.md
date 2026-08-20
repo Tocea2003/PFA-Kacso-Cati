@@ -91,19 +91,39 @@ Progresul deploy-ului se vede in tab-ul **Actions**.
 imaginilor folosesc `import.meta.env.BASE_URL`. Deci merge indiferent cum
 numesti repo-ul, fara sa modifici nimic.
 
-### Cand legi un domeniu propriu
+## Domeniu propriu: controlcalitatesibiu.ro
 
-Pe domeniu propriu site-ul sta in radacina, deci `base` trebuie sa fie `/`.
-Adauga in workflow, la pasul de build:
+Site-ul este deja configurat pentru domeniul **controlcalitatesibiu.ro**:
 
-```yaml
-      - name: Construieste site-ul
-        run: npm run build
-        env:
-          BASE_PATH: /
-```
+- `public/CNAME` — ii spune GitHub Pages pe ce domeniu sa raspunda
+- `BASE_PATH: /` in `.github/workflows/deploy.yml` — pe domeniu propriu site-ul
+  sta in radacina, nu in `/nume-repo/`
+- adresele absolute (canonical, Open Graph, date structurate, `sitemap.xml`,
+  `robots.txt`) folosesc noul domeniu
 
-Apoi in **Settings → Pages → Custom domain** pui domeniul cumparat.
+### Ce se seteaza la registrar (DNS)
+
+| Tip     | Nume (host) | Valoare                |
+| ------- | ----------- | ---------------------- |
+| `A`     | `@`         | `185.199.108.153`      |
+| `A`     | `@`         | `185.199.109.153`      |
+| `A`     | `@`         | `185.199.110.153`      |
+| `A`     | `@`         | `185.199.111.153`      |
+| `CNAME` | `www`       | `tocea2003.github.io.` |
+
+### Ordinea pasilor (important)
+
+1. Cumperi domeniul si setezi DNS-ul de mai sus.
+2. Faci push pe `main` (deploy-ul porneste singur).
+3. In repo: **Settings → Pages → Custom domain** → `controlcalitatesibiu.ro` → **Save**.
+4. Astepti validarea DNS, apoi bifezi **Enforce HTTPS** (certificatul poate dura
+   pana la 24h).
+5. In Google Search Console adaugi noul domeniu ca proprietate si retrimiti
+   `https://controlcalitatesibiu.ro/sitemap.xml`.
+
+Daca faci pasul 3 inainte ca DNS-ul sa fie propagat, adresa veche
+`tocea2003.github.io/PFA-Kacso-Cati/` redirecteaza catre un domeniu care inca nu
+raspunde — site-ul pare picat pana se propaga.
 
 ## Alternative de hosting
 

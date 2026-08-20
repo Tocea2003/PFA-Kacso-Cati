@@ -38,6 +38,9 @@ jobs:
 
       - name: Construieste site-ul
         run: npm run build
+        env:
+          # Domeniu propriu => site-ul sta in radacina, nu in /nume-repo/.
+          BASE_PATH: /
 
       - name: Incarca rezultatul build-ului
         uses: actions/upload-pages-artifact@v3
