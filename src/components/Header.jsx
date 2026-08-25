@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { contact } from '../data/content.js'
+import { useProgresScroll } from '../hooks/animatii.js'
 import { IconCheck } from './Icons.jsx'
 
 const linkuri = [
@@ -12,6 +13,7 @@ const linkuri = [
 export default function Header() {
   const [meniuDeschis, setMeniuDeschis] = useState(false)
   const [scrollat, setScrollat] = useState(false)
+  const progres = useProgresScroll()
 
   useEffect(() => {
     const laScroll = () => setScrollat(window.scrollY > 20)
@@ -33,7 +35,11 @@ export default function Header() {
           </span>
         </a>
 
-        <nav className={`header__nav ${meniuDeschis ? 'is-open' : ''}`}>
+        <nav
+          id="meniu-principal"
+          className={`header__nav ${meniuDeschis ? 'is-open' : ''}`}
+          aria-label="Meniu principal"
+        >
           {linkuri.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setMeniuDeschis(false)}>
               {l.text}
@@ -43,15 +49,23 @@ export default function Header() {
 
         <button
           className="header__toggle"
-          aria-label="Deschide meniul"
+          type="button"
+          aria-label={meniuDeschis ? 'Închide meniul' : 'Deschide meniul'}
+          aria-controls="meniu-principal"
           aria-expanded={meniuDeschis}
           onClick={() => setMeniuDeschis((v) => !v)}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </button>
       </div>
+
+      <div
+        className="header__progres"
+        style={{ width: `${progres * 100}%` }}
+        aria-hidden="true"
+      />
     </header>
   )
 }

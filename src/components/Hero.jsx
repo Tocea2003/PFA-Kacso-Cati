@@ -1,4 +1,4 @@
-import { hero, contact, construiesteLinkWhatsApp } from '../data/content.js'
+import { hero, contact, dimensiuniPoze, construiesteLinkWhatsApp } from '../data/content.js'
 import ImagineCuFallback from './ImagineCuFallback.jsx'
 import { IconWhatsApp } from './Icons.jsx'
 
@@ -12,19 +12,15 @@ export default function Hero() {
           src={hero.imagine}
           alt="Control calitate si verificare piese industriale in Sibiu"
           eticheta="Poza demo — hero"
+          latime={dimensiuniPoze.hero.latime}
+          inaltime={dimensiuniPoze.hero.inaltime}
           prioritate
         />
       </div>
       <div className="hero__overlay"></div>
 
-      <div className="hero__forme" aria-hidden="true">
-        <span className="forma forma--1"></span>
-        <span className="forma forma--2"></span>
-        <span className="forma forma--3"></span>
-      </div>
-
       <div className="container hero__content">
-        <span className="hero__eyebrow">{hero.eyebrow}</span>
+        <span className="hero__eyebrow eticheta-tehnica">{hero.eyebrow}</span>
         <h1 className="hero__titlu">
           {hero.titlu} <br />
           <span className="hero__nume">{contact.nume}</span>

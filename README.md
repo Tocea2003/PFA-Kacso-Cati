@@ -43,21 +43,40 @@ Aproape tot textul este centralizat in **`src/data/content.js`**:
 
 Nu trebuie sa modifici componentele pentru a schimba textele.
 
-## Cum inlocuiesti pozele demo cu poze reale
+## Cum inlocuiesti pozele
 
-Pune pozele tale in folderul **`public/images/`**, pastrand aceleasi nume de fisier:
+Pozele **originale, la rezolutie mare**, stau in folderul `imagini-sursa/`.
+Nu sunt publicate pe site — sunt doar sursa din care se genereaza variantele
+optimizate.
 
-| Fisier                      | Unde apare                            |
-| --------------------------- | ------------------------------------- |
-| `hero.jpg`                  | imaginea mare de sus                  |
-| `serviciu-sortare.jpg`      | card „Sortare si control calitate"    |
-| `serviciu-dimensional.jpg`  | card „Verificare vizuala si dimens."  |
-| `serviciu-control.jpg`      | card „Identificare defecte"           |
-| `serviciu-rework.jpg`       | card „Rework si suport productie"     |
-| `serviciu-rapoarte.jpg`     | card „Documentatie si raportare"      |
-| `serviciu-logistica.jpg`    | card „Organizare activitati logistice"|
-| `serviciu-suport.jpg`       | card „Suport calitate companii ind."  |
-| `serviciu-reclamatii.jpg`   | card „Gestionarea reclamatiilor"      |
+Pune poza noua in `imagini-sursa/`, pastrand numele fisierului, apoi ruleaza:
+
+```bash
+npm run imagini
+```
+
+Scriptul (`scripts/optimizeaza-imagini.mjs`) redimensioneaza fiecare poza la
+dimensiunea la care e chiar afisata si scrie in `public/images/` doua variante:
+`.webp` (folosita de browserele moderne) si `.jpg` (rezerva). Fisierele
+generate se comit in git, ca publicarea pe GitHub Pages sa nu depinda de
+rularea scriptului.
+
+| Fisier sursa                | Unde apare                             |
+| --------------------------- | -------------------------------------- |
+| `hero.jpg`                  | imaginea mare de sus                   |
+| `profil.jpeg`               | poza de profil din sectiunea „Despre"  |
+| `DSG11-scaled.jpg`          | card „Sortare si control calitate"     |
+| `serviciu-dimensional.jpg`  | card „Verificare vizuala si dimens."   |
+| `serviciu-control.jpg`      | card „Identificare defecte"            |
+| `serviciu-rework.jpg`       | card „Rework si suport productie"      |
+| `serviciu-rapoarte.jpg`     | card „Documentatie si raportare"       |
+| `serviciu-logistica.jpg`    | card „Organizare activitati logistice" |
+| `serviciu-suport.jpg`       | card „Suport calitate companii ind."   |
+| `serviciu-reclamatii.jpg`   | card „Gestionarea reclamatiilor"       |
+
+Daca schimbi dimensiunile la care e afisata o poza, actualizeaza si
+`dimensiuniPoze` din `src/data/content.js` — valorile de acolo ajung in
+atributele `width`/`height` si tin layoutul pe loc cat timp se incarca poza.
 
 Pana pui pozele reale, se afiseaza automat un placeholder stilizat (nimic stricat).
 

@@ -1,33 +1,60 @@
 /* ============================================================
-   VARIABILE — paleta industriala (albastru / gri metalic)
+   VARIABILE — paleta industrial-clasica (bleumarin / neutre calde)
    ============================================================ */
 :root {
-  /* Paleta „Trust & Authority” — albastru viu + accent verde */
-  --albastru-inchis: #1e3a8a;
-  --albastru: #1e40af;
-  --albastru-mediu: #2563eb;
-  --albastru-accent: #60a5fa;
+  /* Paleta „Industrial clasic” — bleumarin adanc + neutre calde.
+     Numele variabilelor raman cele vechi (sunt folosite peste tot);
+     doar valorile s-au schimbat. */
+  --albastru-inchis: #0f2438;
+  --albastru: #16324f;
+  --albastru-mediu: #1f4e79;
+  --albastru-accent: #5b87b0;
   --verde-ok: #16a34a;
+  /* Verde WhatsApp coborat pana trece WCAG AA cu text alb (4.55:1).
+     Nuanta de brand #25d366 da doar 2.6:1 — ilizibila la greutatea asta. */
+  --verde-wa: #11883d;
   --verde-inchis: #15803d;
 
-  --antracit: #172033;
-  --gri-inchis: #334155;
-  --gri: #64748b;
-  --gri-deschis: #cbd5e1;
-  --fundal: #eff6ff;
+  --antracit: #14202e;
+  --gri-inchis: #3d4a5c;
+  --gri: #5d6875;
+  --gri-deschis: #dcd9d4;
+  --fundal: #f7f6f4;
   --fundal-card: #ffffff;
   --alb: #ffffff;
-  --border: #bfdbfe;
+  --border: #cfcbc3;
 
-  --umbra: 0 4px 16px rgba(30, 64, 175, 0.1);
-  --umbra-hover: 0 16px 40px rgba(30, 64, 175, 0.2);
-  --radius: 14px;
-  --radius-mic: 9px;
+  /* Linii de un pixel — inlocuiesc umbrele colorate ca mod de a delimita. */
+  --linie: #e2dfd9;
+  --linie-forte: #b9b4ab;
+
+  /* Accent cald, folosit DOAR pe detalii mici: rigle, puncte de timeline,
+     numerele de sectiune. Niciodata pe suprafete mari. */
+  --alama: #8a6c42;
+  /* Aceeasi alama, dar pentru fundaluri inchise (hero, banda de statistici). */
+  --alama-clara: #c9a227;
+
+  --umbra: 0 1px 2px rgba(20, 32, 46, 0.06);
+  --umbra-hover: 0 6px 20px rgba(20, 32, 46, 0.1);
+  --radius: 3px;
+  --radius-mic: 2px;
   --max-latime: 1140px;
-  --tranzitie: 0.25s ease;
+  --tranzitie: 0.22s cubic-bezier(0.16, 0.84, 0.44, 1);
 
-  --font: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
-  --font-titlu: 'Sora', 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --font-titlu: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+/* Eticheta tehnica: mono, majuscule, spatiata. Folosita pe eyebrow, etichete
+   de statistici, label-uri de formular, datele oficiale ale PFA-ului.
+   E mutarea care schimba cel mai mult registrul paginii. */
+.eticheta-tehnica {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* ============================================================
@@ -62,12 +89,44 @@ h3,
 .serviciu-card__titlu,
 .header__logo {
   font-family: var(--font-titlu);
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 img {
   max-width: 100%;
   display: block;
+}
+/* <picture> nu genereaza cutie proprie, deci regulile de mai jos scrise pentru
+   `img` continua sa functioneze exact ca inainte de trecerea la WebP. */
+picture {
+  display: contents;
+}
+
+/* Contur de focus vizibil pentru navigarea cu tastatura. `:focus-visible`
+   il arata doar la Tab, nu si la click cu mouse-ul. */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--albastru-mediu);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Link „sari la continut”: ascuns pana primeste focus. */
+.sari-la-continut {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 300;
+  background: var(--alb);
+  color: var(--albastru);
+  padding: 12px 18px;
+  border-radius: var(--radius-mic);
+  box-shadow: var(--umbra-hover);
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+.sari-la-continut:focus {
+  top: 12px;
 }
 
 a {
@@ -101,62 +160,98 @@ ul {
   background: var(--alb);
 }
 
+/* Indicativ numerotat deasupra titlului: „01 — SERVICII”. Face pagina sa
+   citeasca a document tehnic, nu a landing page. */
+.sectiune-numar {
+  display: block;
+  color: var(--gri);
+  margin-bottom: 14px;
+}
+.sectiune-numar b {
+  color: var(--alama);
+  font-weight: 500;
+}
+
 .sectiune-titlu {
-  font-size: clamp(1.6rem, 4vw, 2.3rem);
-  color: var(--albastru);
-  text-align: center;
-  margin-bottom: 12px;
-  font-weight: 700;
+  font-size: clamp(1.55rem, 3.6vw, 2.15rem);
+  color: var(--antracit);
+  margin-bottom: 18px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 18px;
+}
+/* Rigla de sub titlu — se traseaza la intrarea in ecran (vezi animatii.css). */
+.sectiune-titlu::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--alama);
 }
 
 .sectiune-subtitlu {
-  text-align: center;
   color: var(--gri);
-  max-width: 640px;
-  margin: 0 auto 48px;
-  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0 0 48px;
+  font-size: 1.02rem;
 }
 
 .btn {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 13px 26px;
+  gap: 9px;
+  padding: 14px 28px;
   border-radius: var(--radius-mic);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  letter-spacing: 0.01em;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: var(--tranzitie);
+  border: 1px solid transparent;
   font-family: inherit;
+  /* Umplerea care matura de la stanga la hover — inlocuieste ridicarea
+     translateY, care e un gest de landing page. Facuta din background-size,
+     nu dintr-un pseudo-element suprapus: asa nu acopera textul (care e
+     nod-text, nu element, deci nu poate fi ridicat deasupra cu z-index).
+     Variantele de mai jos folosesc `background-color`, nu scurtatura
+     `background` — altfel ar sterge gradientul asta. */
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.16)
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition:
+    background-size 0.3s cubic-bezier(0.16, 0.84, 0.44, 1),
+    border-color var(--tranzitie),
+    color var(--tranzitie);
+}
+.btn:hover {
+  background-size: 100% 100%;
 }
 
 .btn--primar {
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  background-color: var(--albastru);
   color: var(--alb);
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
-}
-.btn--primar:hover {
-  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-  transform: translateY(-2px);
+  border-color: var(--albastru);
 }
 
 .btn--wa {
-  background: #25d366;
+  background-color: var(--verde-wa);
   color: var(--alb);
-}
-.btn--wa:hover {
-  background: #1da851;
-  transform: translateY(-2px);
+  border-color: var(--verde-wa);
 }
 
 .btn--contur {
-  background: transparent;
+  background-color: transparent;
   color: var(--alb);
-  border-color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 .btn--contur:hover {
-  background: rgba(255, 255, 255, 0.12);
   border-color: var(--alb);
 }
 
@@ -192,9 +287,21 @@ ul {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
-  box-shadow: 0 1px 0 rgba(22, 50, 79, 0.08);
+  border-bottom: 1px solid var(--linie);
+}
+
+/* Bara de progres al citirii — creste cu pozitia de scroll. Singurul element
+   animat permanent din pagina, si e informativ, nu decorativ. */
+.header__progres {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--alama);
+  transform-origin: left;
+  will-change: transform;
 }
 
 .header__inner {
@@ -215,7 +322,7 @@ ul {
 .header__logo-badge {
   width: 34px;
   height: 34px;
-  border-radius: 8px;
+  border-radius: var(--radius-mic);
   background: var(--albastru);
   display: flex;
   align-items: center;
@@ -225,10 +332,17 @@ ul {
   width: 20px;
   height: 20px;
 }
+.header__logo {
+  letter-spacing: -0.005em;
+}
 .header__logo small {
   display: block;
-  font-size: 0.7rem;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
   font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
   color: var(--gri);
 }
 
@@ -237,13 +351,32 @@ ul {
   gap: 28px;
 }
 .header__nav a {
+  position: relative;
   color: var(--gri-inchis);
   font-weight: 500;
-  font-size: 0.98rem;
-  transition: var(--tranzitie);
+  font-size: 0.94rem;
+  padding: 4px 0;
+  transition: color var(--tranzitie);
 }
-.header__nav a:hover {
+.header__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--albastru-mediu);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.24s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+.header__nav a:hover,
+.header__nav a:focus-visible {
   color: var(--albastru-mediu);
+}
+.header__nav a:hover::after,
+.header__nav a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .header__toggle {
@@ -259,7 +392,17 @@ ul {
   height: 2px;
   background: var(--albastru);
   margin: 5px 0;
-  transition: var(--tranzitie);
+  transition: transform 0.26s cubic-bezier(0.16, 0.84, 0.44, 1), opacity 0.18s ease;
+}
+/* Cele trei linii se transforma in X cand meniul e deschis. */
+.header__toggle[aria-expanded='true'] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.header__toggle[aria-expanded='true'] span:nth-child(2) {
+  opacity: 0;
+}
+.header__toggle[aria-expanded='true'] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ============================================================
@@ -290,11 +433,12 @@ ul {
   position: absolute;
   inset: 0;
   z-index: 1;
+  /* Scrim neutru, nu perdea albastra: poza chiar se vede pe sub el. */
   background: linear-gradient(
-    105deg,
-    rgba(30, 58, 138, 0.94) 0%,
-    rgba(30, 64, 175, 0.82) 45%,
-    rgba(37, 99, 235, 0.48) 100%
+    100deg,
+    rgba(15, 36, 56, 0.9) 0%,
+    rgba(15, 36, 56, 0.74) 46%,
+    rgba(15, 36, 56, 0.4) 100%
   );
 }
 .hero__content {
@@ -306,37 +450,32 @@ ul {
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(22, 163, 74, 0.18);
-  color: #4ade80;
-  padding: 7px 16px;
-  border-radius: 40px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(74, 222, 128, 0.35);
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 22px;
 }
+/* Rigla scurta care precede eticheta — se traseaza la incarcare. */
 .hero__eyebrow::before {
   content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.25);
+  width: 32px;
+  height: 2px;
+  background: var(--alama-clara);
+  transform-origin: left;
 }
 .hero__titlu {
-  font-size: clamp(2rem, 5.5vw, 3.4rem);
-  line-height: 1.15;
-  font-weight: 800;
-  margin-bottom: 20px;
+  font-size: clamp(1.95rem, 5vw, 3.1rem);
+  line-height: 1.16;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  margin-bottom: 22px;
 }
 .hero__nume {
   color: var(--albastru-accent);
 }
 .hero__subtitlu {
-  font-size: 1.15rem;
-  color: #dce4ec;
+  font-size: 1.08rem;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 34px;
   max-width: 600px;
 }
@@ -365,17 +504,35 @@ ul {
   }
 }
 .serviciu-card {
+  position: relative;
   background: var(--fundal-card);
-  border-radius: var(--radius);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius-mic);
   overflow: hidden;
-  box-shadow: var(--umbra);
-  transition: var(--tranzitie);
   display: flex;
   flex-direction: column;
+  transition: border-color var(--tranzitie), box-shadow var(--tranzitie);
+}
+/* Linia care se traseaza pe muchia de sus la hover — inlocuieste ridicarea. */
+.serviciu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 2;
+  background: var(--albastru);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.32s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 .serviciu-card:hover {
-  transform: translateY(-6px);
+  border-color: var(--linie-forte);
   box-shadow: var(--umbra-hover);
+}
+.serviciu-card:hover::before {
+  transform: scaleX(1);
 }
 .serviciu-card__media {
   height: 180px;
@@ -391,6 +548,10 @@ ul {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+.serviciu-card:hover .serviciu-card__media img {
+  transform: scale(1.03);
 }
 .serviciu-card__icon {
   position: absolute;
@@ -398,15 +559,14 @@ ul {
   left: 22px;
   width: 50px;
   height: 50px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  border-radius: var(--radius-mic);
+  background: var(--albastru);
   color: var(--alb);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 3;
   border: 3px solid var(--fundal-card);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
 }
 .serviciu-card__icon svg {
   width: 24px;
@@ -443,7 +603,7 @@ ul {
   top: 6px;
   bottom: 6px;
   width: 2px;
-  background: var(--gri-deschis);
+  background: var(--linie);
 }
 .timeline-item {
   position: relative;
@@ -455,23 +615,23 @@ ul {
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: -30px;
-  top: 4px;
-  width: 16px;
-  height: 16px;
+  left: -27px;
+  top: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--albastru-mediu);
-  border: 3px solid var(--alb);
-  box-shadow: 0 0 0 2px var(--albastru-mediu);
+  background: var(--alama);
+  border: 3px solid var(--fundal);
+  box-sizing: content-box;
 }
 .timeline-item__perioada {
   display: inline-block;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--albastru-mediu);
-  background: rgba(37, 99, 235, 0.1);
-  padding: 3px 10px;
-  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--gri);
+  padding: 0;
   margin-bottom: 8px;
 }
 .timeline-item__rol {
@@ -553,16 +713,16 @@ ul {
 .tag {
   background: var(--fundal);
   color: var(--gri-inchis);
-  border: 1px solid var(--gri-deschis);
+  border: 1px solid var(--linie);
   padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.86rem;
+  border-radius: var(--radius-mic);
+  font-size: 0.84rem;
   font-weight: 500;
 }
 .tag--accent {
-  background: rgba(37, 99, 235, 0.08);
-  border-color: rgba(37, 99, 235, 0.3);
-  color: var(--albastru-mediu);
+  background: var(--alb);
+  border-color: var(--albastru-accent);
+  color: var(--albastru);
 }
 
 /* ============================================================
@@ -626,7 +786,7 @@ a.contact-detaliu__val:hover {
 .contact-zona {
   margin-top: 26px;
   padding: 16px 18px;
-  border: 1px solid var(--gri-deschis);
+  border: 1px solid var(--linie);
   border-radius: var(--radius-mic);
   font-size: 0.9rem;
   color: var(--gri-inchis);
@@ -634,11 +794,13 @@ a.contact-detaliu__val:hover {
 }
 .contact-zona > span {
   display: block;
-  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
   color: var(--gri);
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 .contact-zona p {
   margin: 0 0 12px;
@@ -652,23 +814,26 @@ a.contact-detaliu__val:hover {
 .contact-oficial {
   margin-top: 26px;
   padding: 16px 18px;
-  background: rgba(37, 99, 235, 0.06);
-  border: 1px solid rgba(37, 99, 235, 0.18);
+  background: var(--alb);
+  border: 1px solid var(--linie);
+  border-left: 2px solid var(--alama);
   border-radius: var(--radius-mic);
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   color: var(--gri-inchis);
-  line-height: 1.7;
+  line-height: 1.9;
 }
 .contact-oficial span {
   display: block;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
   color: var(--gri);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .contact-oficial strong {
-  color: var(--albastru);
+  color: var(--antracit);
+  font-weight: 500;
 }
 
 .contact-form {
@@ -711,6 +876,18 @@ a.contact-detaliu__val:hover {
   color: var(--antracit);
   transition: var(--tranzitie);
   background: var(--alb);
+}
+.camp label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gri);
+}
+.camp__opt {
+  text-transform: none;
+  letter-spacing: 0;
 }
 .camp input:focus,
 .camp textarea:focus {
@@ -833,10 +1010,19 @@ a.contact-detaliu__val:hover {
     box-shadow: var(--umbra);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    /* `visibility` scoate linkurile din ordinea de Tab cat timp meniul e
+       inchis; fara ea, tastatura intra intr-un meniu invizibil. */
+    visibility: hidden;
+    transition:
+      max-height 0.3s ease,
+      visibility 0s linear 0.3s;
   }
   .header__nav.is-open {
     max-height: 320px;
+    visibility: visible;
+    transition:
+      max-height 0.3s ease,
+      visibility 0s;
   }
   .header__nav a {
     padding: 15px 20px;

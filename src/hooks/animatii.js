@@ -64,3 +64,36 @@ export function useCountUp(tinta, activ, durata = 1500) {
 
   return valoare
 }
+
+// Cat din pagina a fost parcurs, ca numar intre 0 si 1. Alimenteaza bara de
+// progres din header. Citirea se face in rAF, ca sa nu forteze layout la
+// fiecare eveniment de scroll.
+export function useProgresScroll() {
+  const [progres, setProgres] = useState(0)
+
+  useEffect(() => {
+    if (miscareRedusa()) return
+    let raf = null
+
+    const masoara = () => {
+      raf = null
+      const doc = document.documentElement
+      const parcurs = doc.scrollHeight - doc.clientHeight
+      setProgres(parcurs > 0 ? Math.min(doc.scrollTop / parcurs, 1) : 0)
+    }
+    const laScroll = () => {
+      if (raf === null) raf = requestAnimationFrame(masoara)
+    }
+
+    window.addEventListener('scroll', laScroll, { passive: true })
+    window.addEventListener('resize', laScroll)
+    masoara()
+    return () => {
+      window.removeEventListener('scroll', laScroll)
+      window.removeEventListener('resize', laScroll)
+      if (raf !== null) cancelAnimationFrame(raf)
+    }
+  }, [])
+
+  return progres
+}

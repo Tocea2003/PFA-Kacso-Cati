@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
 // Buton flotant "inapoi sus", apare dupa ce derulezi in jos.
+// Cat timp e invizibil il scot din ordinea de Tab (tabIndex -1), ca sa nu
+// ajunga tastatura pe un buton pe care nu-l vede nimeni.
 export default function ScrollTop() {
   const [vizibil, setVizibil] = useState(false)
 
@@ -14,7 +16,10 @@ export default function ScrollTop() {
   return (
     <button
       className={`scroll-top ${vizibil ? 'is-vizibil' : ''}`}
-      aria-label="Inapoi sus"
+      type="button"
+      aria-label="Înapoi sus"
+      tabIndex={vizibil ? 0 : -1}
+      aria-hidden={vizibil ? undefined : 'true'}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
       <svg

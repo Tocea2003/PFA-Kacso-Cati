@@ -1,18 +1,14 @@
-import { servicii, serviciiSubtitlu } from '../data/content.js'
+import { servicii, serviciiSubtitlu, dimensiuniPoze } from '../data/content.js'
 import ImagineCuFallback from './ImagineCuFallback.jsx'
 import { IconServiciu } from './Icons.jsx'
+import AntetSectiune from './AntetSectiune.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Servicii() {
   return (
     <section className="sectiune sectiune--alb" id="servicii">
       <div className="container">
-        <Reveal as="h2" className="sectiune-titlu">
-          Servicii
-        </Reveal>
-        <Reveal as="p" className="sectiune-subtitlu" delay={80}>
-          {serviciiSubtitlu}
-        </Reveal>
+        <AntetSectiune numar="01" titlu="Servicii" subtitlu={serviciiSubtitlu} />
 
         <div className="servicii__grid">
           {servicii.map((s, i) => (
@@ -20,7 +16,13 @@ export default function Servicii() {
               <article className="serviciu-card">
                 <div className="serviciu-card__media">
                   <div className="serviciu-card__poza">
-                    <ImagineCuFallback src={s.imagine} alt={s.titlu} eticheta="Poza demo" />
+                    <ImagineCuFallback
+                      src={s.imagine}
+                      alt={s.titlu}
+                      eticheta="Poza demo"
+                      latime={dimensiuniPoze.serviciu.latime}
+                      inaltime={dimensiuniPoze.serviciu.inaltime}
+                    />
                   </div>
                   <span className="serviciu-card__icon">
                     <IconServiciu tip={s.icon} />

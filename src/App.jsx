@@ -11,8 +11,11 @@ import ScrollTop from './components/ScrollTop.jsx'
 export default function App() {
   return (
     <>
+      <a className="sari-la-continut" href="#continut">
+        Sari la conținut
+      </a>
       <Header />
-      <main>
+      <main id="continut">
         <Hero />
         <Statistici />
         <Servicii />

@@ -8,6 +8,7 @@
    ============================================================ */
 :root {
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-tehnic: cubic-bezier(0.16, 0.84, 0.44, 1);
   --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   /* Overshoot subtil (back.out) pentru un feel mai viu */
@@ -21,20 +22,20 @@
   opacity: 0;
   will-change: transform, opacity;
   transition:
-    opacity 0.55s var(--ease-out-quart),
-    transform 0.6s var(--ease-back);
+    opacity 0.3s ease,
+    transform 0.34s var(--ease-tehnic);
 }
 .js .reveal--up {
-  transform: translateY(34px) scale(0.97);
+  transform: translateY(10px);
 }
 .js .reveal--left {
-  transform: translateX(-38px);
+  transform: translateX(-12px);
 }
 .js .reveal--right {
-  transform: translateX(38px);
+  transform: translateX(12px);
 }
 .js .reveal--zoom {
-  transform: scale(0.94);
+  transform: scale(0.99);
 }
 .js .reveal.is-vizibil {
   opacity: 1;
@@ -60,24 +61,24 @@
 /* ---------- Hero: intrare in cascada ---------- */
 .js .hero__content > * {
   opacity: 0;
-  animation: heroIn 0.85s var(--ease-out-quart) forwards;
+  animation: heroIn 0.42s var(--ease-tehnic) forwards;
 }
 .hero__content > *:nth-child(1) {
-  animation-delay: 0.1s;
+  animation-delay: 0.06s;
 }
 .hero__content > *:nth-child(2) {
-  animation-delay: 0.22s;
+  animation-delay: 0.14s;
 }
 .hero__content > *:nth-child(3) {
-  animation-delay: 0.34s;
+  animation-delay: 0.22s;
 }
 .hero__content > *:nth-child(4) {
-  animation-delay: 0.46s;
+  animation-delay: 0.3s;
 }
 @keyframes heroIn {
   from {
     opacity: 0;
-    transform: translateY(26px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -85,115 +86,63 @@
   }
 }
 
-/* Ken Burns lent pe imaginea hero */
-.hero__bg img {
-  animation: kenburns 26s ease-in-out infinite;
-}
-@keyframes kenburns {
-  0% {
-    transform: scale(1.04);
-  }
-  50% {
-    transform: scale(1.13);
-  }
-  100% {
-    transform: scale(1.04);
-  }
+/* Rigla din dreptul eyebrow-ului se traseaza dupa ce textul a intrat. */
+.js .hero__eyebrow::before {
+  transform: scaleX(0);
+  animation: trasare 0.4s var(--ease-tehnic) 0.3s forwards;
 }
 
-/* Forme plutitoare decorative (doar transform, fara blur greu) */
-.hero__forme {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  pointer-events: none;
-}
-.forma {
-  position: absolute;
-  border-radius: 50%;
-  will-change: transform;
-}
-.forma--1 {
-  width: 300px;
-  height: 300px;
-  top: -70px;
-  right: 6%;
-  border: 2px solid rgba(74, 163, 223, 0.22);
-  animation: plutire 14s ease-in-out infinite;
-}
-.forma--2 {
-  width: 170px;
-  height: 170px;
-  bottom: -50px;
-  right: 24%;
-  border: 2px solid rgba(74, 163, 223, 0.16);
-  animation: plutire 11s ease-in-out infinite reverse;
-}
-.forma--3 {
-  width: 90px;
-  height: 90px;
-  top: 34%;
-  right: 3%;
-  background: rgba(74, 163, 223, 0.12);
-  animation: plutire 9s ease-in-out infinite;
-}
-@keyframes plutire {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-24px);
-  }
-}
+/* Nota: aici erau doua efecte decorative — zoom Ken Burns infinit pe poza
+   hero si trei cercuri care pluteau la nesfarsit. Ambele au fost scoase:
+   miscare permanenta in fundal, care nu comunica nimic si distrage la citit. */
 
 /* ---------- Banda de statistici ---------- */
 .statistici {
-  background: linear-gradient(120deg, var(--albastru-inchis) 0%, var(--albastru) 100%);
+  background: var(--antracit);
   color: var(--alb);
-  padding: 46px 0;
+  padding: 44px 0;
 }
 .statistici__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  text-align: center;
+  gap: 0;
+}
+/* Separatoare hairline intre coloane — citeste a tabel de specificatii. */
+.stat {
+  padding: 4px 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+.stat:first-child {
+  border-left: none;
+  padding-left: 0;
 }
 .js .stat {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(10px);
   will-change: transform, opacity;
   transition:
-    opacity 0.6s var(--ease-out-quart),
-    transform 0.6s var(--ease-out-quart);
+    opacity 0.3s ease,
+    transform 0.34s var(--ease-tehnic);
 }
 .js .stat.is-vizibil {
   opacity: 1;
   transform: none;
 }
-.js .stat.is-vizibil .stat__numar {
-  animation: statPop 0.6s var(--ease-back) both;
-}
-@keyframes statPop {
-  0% {
-    transform: scale(0.82);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 .stat__numar {
-  font-size: clamp(2rem, 4.6vw, 3rem);
-  font-weight: 800;
-  color: #7cc0ff;
+  font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+  font-weight: 600;
+  color: var(--alb);
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 .stat__eticheta {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #cfdae6;
-  letter-spacing: 0.3px;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 /* ---------- Timeline: linia creste la intrare ---------- */
@@ -307,18 +256,92 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 30px 16px;
   }
+  /* Pe doua coloane, separatoarele verticale ar cadea aiurea (al treilea
+     element e primul din randul lui, dar tot ar avea linie la stanga). */
+  .stat {
+    padding: 0;
+    border-left: none;
+  }
+}
+
+/* ---------- Rigla care se traseaza sub titlurile de sectiune ----------
+   Semnatura vizuala a stilului: fiecare sectiune isi "deseneaza" linia. */
+.js .sectiune-antet .sectiune-titlu::after {
+  transform: scaleX(0);
+  transition: transform 0.32s var(--ease-tehnic) 0.16s;
+}
+.js .sectiune-antet.is-vizibil .sectiune-titlu::after {
+  transform: scaleX(1);
+}
+
+@keyframes trasare {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------- Numarul de sectiune intra dinspre stanga ---------- */
+.js .sectiune-antet .sectiune-numar {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.28s ease 0.06s,
+    transform 0.3s var(--ease-tehnic) 0.06s;
+}
+.js .sectiune-antet.is-vizibil .sectiune-numar {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Punctele de timeline se fixeaza pe rand ---------- */
+.js .timeline-item::before {
+  transform: scale(0);
+  transition: transform 0.3s var(--ease-tehnic);
+}
+.js .timeline-item.is-vizibil::before {
+  transform: scale(1);
+}
+
+/* ---------- Imaginile apar in fade la incarcare ----------
+   Fara asta, poza "pocneste" brusc peste fundalul gol. */
+.js .imagine-incarcabila {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.js .imagine-incarcabila.s-a-incarcat {
+  opacity: 1;
 }
 
 /* ---------- Respecta miscarea redusa ---------- */
 @media (prefers-reduced-motion: reduce) {
+  /* Tot ce s-a adaugat la restilizare se opreste si el aici. */
+  .js .sectiune-antet .sectiune-titlu::after,
+  .js .sectiune-antet .sectiune-numar,
+  .js .timeline-item::before,
+  .js .imagine-incarcabila,
+  .js .hero__eyebrow::before {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+  .header__progres {
+    display: none;
+  }
+  .serviciu-card:hover .serviciu-card__media img,
+  .serviciu-card:hover::before,
+  .header__nav a:hover::after {
+    transform: none;
+  }
+
   .js .reveal,
   .js .stat {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .js .stat.is-vizibil .stat__numar {
-    animation: none;
   }
   .js .hero__content > * {
     opacity: 1;

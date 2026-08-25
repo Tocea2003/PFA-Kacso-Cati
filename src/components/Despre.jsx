@@ -1,23 +1,24 @@
-import { despre, inchidere, calificari, competente } from '../data/content.js'
+import { despre, inchidere, calificari, competente, dimensiuniPoze } from '../data/content.js'
 import { IconAward, IconTools } from './Icons.jsx'
 import ImagineCuFallback from './ImagineCuFallback.jsx'
+import AntetSectiune from './AntetSectiune.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Despre() {
   return (
     <section className="sectiune sectiune--alb" id="despre">
       <div className="container">
-        <Reveal as="h2" className="sectiune-titlu">
-          Despre
-        </Reveal>
+        <AntetSectiune numar="03" titlu="Despre" />
 
         <div className="despre__grid">
           <Reveal className="despre__text" variant="left">
             <figure className="despre__profil">
               <ImagineCuFallback
-                src={`${import.meta.env.BASE_URL}images/profil.jpeg`}
-                alt="Kacso Cati"
+                src={`${import.meta.env.BASE_URL}images/profil`}
+                alt="Kacso Cati, PFA control calitate în Cisnădie, jud. Sibiu"
                 eticheta="Poză de profil"
+                latime={dimensiuniPoze.profil.latime}
+                inaltime={dimensiuniPoze.profil.inaltime}
               />
               <figcaption>Kacso Cati</figcaption>
             </figure>

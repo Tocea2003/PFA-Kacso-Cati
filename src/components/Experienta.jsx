@@ -1,5 +1,6 @@
 import { experienta, experientaSubtitlu } from '../data/content.js'
 import { useReveal } from '../hooks/animatii.js'
+import AntetSectiune from './AntetSectiune.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Experienta() {
@@ -8,12 +9,7 @@ export default function Experienta() {
   return (
     <section className="sectiune sectiune--gri" id="experienta">
       <div className="container">
-        <Reveal as="h2" className="sectiune-titlu">
-          Experiență profesională
-        </Reveal>
-        <Reveal as="p" className="sectiune-subtitlu" delay={80}>
-          {experientaSubtitlu}
-        </Reveal>
+        <AntetSectiune numar="02" titlu="Experiență profesională" subtitlu={experientaSubtitlu} />
 
         <div className={`timeline ${vizibil ? 'is-vizibil' : ''}`} ref={refTimeline}>
           {experienta.map((e, i) => (

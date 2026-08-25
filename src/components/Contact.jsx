@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { contact, zonaDeservita, construiesteLinkWhatsApp } from '../data/content.js'
 import { IconPhone, IconMail, IconPin, IconWhatsApp } from './Icons.jsx'
+import AntetSectiune from './AntetSectiune.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function Contact() {
   const [date, setDate] = useState({ nume: '', email: '', mesaj: '' })
   const [erori, setErori] = useState({})
+  const formular = useRef(null)
 
   function actualizeaza(e) {
     const { name, value } = e.target
@@ -25,8 +27,12 @@ export default function Contact() {
   function trimite(e) {
     e.preventDefault()
     const er = valideaza()
-    if (Object.keys(er).length > 0) {
+    const campuriGresite = Object.keys(er)
+    if (campuriGresite.length > 0) {
       setErori(er)
+      // Duc focusul pe primul camp gresit: altfel, cine completeaza cu
+      // tastatura sau cu cititor de ecran nu afla ce anume lipseste.
+      formular.current?.elements[campuriGresite[0]]?.focus()
       return
     }
     const link = construiesteLinkWhatsApp(date)
@@ -49,12 +55,7 @@ export default function Contact() {
   return (
     <section className="sectiune sectiune--gri" id="contact">
       <div className="container">
-        <Reveal as="h2" className="sectiune-titlu">
-          Contact
-        </Reveal>
-        <Reveal as="p" className="sectiune-subtitlu" delay={80}>
-          Completați formularul, iar mesajul va fi trimis direct pe WhatsApp cu datele deja scrise.
-        </Reveal>
+        <AntetSectiune numar="04" titlu="Contact" subtitlu={'Completați formularul, iar mesajul va fi trimis direct pe WhatsApp cu datele deja scrise.'} />
 
         <div className="contact__grid">
           <Reveal className="contact__info" variant="left">
@@ -110,9 +111,9 @@ export default function Contact() {
           </Reveal>
 
           <Reveal variant="right" delay={100}>
-            <form className="contact-form" onSubmit={trimite} noValidate>
+            <form className="contact-form" ref={formular} onSubmit={trimite} noValidate>
               <p className="contact-form__nota">
-                <IconWhatsApp style={{ width: 18, height: 18, color: '#25d366', flexShrink: 0 }} />
+                <IconWhatsApp style={{ width: 18, height: 18, color: 'var(--verde-wa)', flexShrink: 0 }} />
                 La apăsarea butonului se deschide WhatsApp cu mesajul pre-completat. Mai apăsați o
                 dată „Trimite” în WhatsApp și gata.
               </p>
@@ -125,9 +126,15 @@ export default function Contact() {
                   type="text"
                   value={date.nume}
                   onChange={actualizeaza}
+                  aria-invalid={erori.nume ? 'true' : undefined}
+                  aria-describedby={erori.nume ? 'eroare-nume' : undefined}
                   placeholder="Numele dumneavoastră"
                 />
-                {erori.nume && <div className="camp__eroare">{erori.nume}</div>}
+                {erori.nume && (
+                  <div className="camp__eroare" id="eroare-nume" role="alert">
+                    {erori.nume}
+                  </div>
+                )}
               </div>
 
               <div className={`camp ${erori.email ? 'camp--eroare' : ''}`}>
@@ -138,9 +145,15 @@ export default function Contact() {
                   type="email"
                   value={date.email}
                   onChange={actualizeaza}
+                  aria-invalid={erori.email ? 'true' : undefined}
+                  aria-describedby={erori.email ? 'eroare-email' : undefined}
                   placeholder="nume@exemplu.ro"
                 />
-                {erori.email && <div className="camp__eroare">{erori.email}</div>}
+                {erori.email && (
+                  <div className="camp__eroare" id="eroare-email" role="alert">
+                    {erori.email}
+                  </div>
+                )}
               </div>
 
               <div className={`camp ${erori.mesaj ? 'camp--eroare' : ''}`}>
@@ -150,9 +163,15 @@ export default function Contact() {
                   name="mesaj"
                   value={date.mesaj}
                   onChange={actualizeaza}
+                  aria-invalid={erori.mesaj ? 'true' : undefined}
+                  aria-describedby={erori.mesaj ? 'eroare-mesaj' : undefined}
                   placeholder="Descrieți tipul produselor, cantitatea și ce fel de verificare aveți nevoie..."
                 />
-                {erori.mesaj && <div className="camp__eroare">{erori.mesaj}</div>}
+                {erori.mesaj && (
+                  <div className="camp__eroare" id="eroare-mesaj" role="alert">
+                    {erori.mesaj}
+                  </div>
+                )}
               </div>
 
               <button type="submit" className="btn btn--wa">
