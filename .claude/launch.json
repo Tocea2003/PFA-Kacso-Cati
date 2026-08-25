@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "site-verificare-piese",
-      "runtimeExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+      "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 5173
     }

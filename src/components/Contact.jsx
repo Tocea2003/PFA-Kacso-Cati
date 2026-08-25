@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { contact, construiesteLinkWhatsApp } from '../data/content.js'
+import { contact, zonaDeservita, construiesteLinkWhatsApp } from '../data/content.js'
 import { IconPhone, IconMail, IconPin, IconWhatsApp } from './Icons.jsx'
 import Reveal from './Reveal.jsx'
 
@@ -86,6 +86,19 @@ export default function Contact() {
                 </div>
               </div>
             ))}
+
+            <div className="contact-zona">
+              <span>Zona deservită</span>
+              <p>{zonaDeservita.intro}</p>
+              <div className="tag-lista">
+                {zonaDeservita.localitati.map((l) => (
+                  <span className="tag" key={l}>
+                    {l}
+                  </span>
+                ))}
+              </div>
+              <p className="contact-zona__nota">{zonaDeservita.nota}</p>
+            </div>
 
             <div className="contact-oficial">
               <span>PFA înregistrată la Registrul Comerțului</span>

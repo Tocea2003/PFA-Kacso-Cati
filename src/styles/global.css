@@ -623,6 +623,32 @@ a.contact-detaliu__val:hover {
   text-decoration: underline;
 }
 
+.contact-zona {
+  margin-top: 26px;
+  padding: 16px 18px;
+  border: 1px solid var(--gri-deschis);
+  border-radius: var(--radius-mic);
+  font-size: 0.9rem;
+  color: var(--gri-inchis);
+  line-height: 1.7;
+}
+.contact-zona > span {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gri);
+  margin-bottom: 6px;
+}
+.contact-zona p {
+  margin: 0 0 12px;
+}
+.contact-zona__nota {
+  margin: 12px 0 0;
+  font-size: 0.84rem;
+  color: var(--gri);
+}
+
 .contact-oficial {
   margin-top: 26px;
   padding: 16px 18px;

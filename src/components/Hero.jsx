@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="hero__bg">
         <ImagineCuFallback
           src={hero.imagine}
-          alt="Control calitate piese in mediu industrial"
+          alt="Control calitate si verificare piese industriale in Sibiu"
           eticheta="Poza demo — hero"
           prioritate
         />

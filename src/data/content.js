@@ -31,15 +31,15 @@ const poza = (nume) => `${import.meta.env.BASE_URL}images/${nume}`
 // --- Secțiunea Hero ---
 export const hero = {
   eyebrow: 'PFA autorizată • Cisnădie, jud. Sibiu',
-  titlu: 'Verificare și control calitate produse',
+  titlu: 'Control calitate și verificare produse în Sibiu',
   subtitlu:
-    'Peste 20 de ani de experiență în controlul calității, sortarea și verificarea produselor, analiza defectelor și suport pentru procesele de producție — servicii adaptate nevoilor fiecărui client.',
+    'Peste 20 de ani de experiență în controlul calității, sortarea și verificarea produselor, analiza defectelor și suport pentru procesele de producție. Servicii pentru companii din Sibiu, Cisnădie și împrejurimi, adaptate nevoilor fiecărui client.',
   imagine: poza('hero.jpg'),
 }
 
 // --- Servicii ---
 export const serviciiSubtitlu =
-  'Servicii de sprijin pentru companii din domeniul industrial, realizate cu seriozitate, promptitudine și atenție la standardele de calitate.'
+  'Servicii de control calitate pentru companii din domeniul industrial din județul Sibiu, realizate cu seriozitate, promptitudine și atenție la standardele de calitate.'
 
 export const servicii = [
   {
@@ -107,6 +107,23 @@ export const servicii = [
     icon: 'reclamatii',
   },
 ]
+
+// --- Zona deservită (relevanță locală pentru căutări de tip „control calitate Sibiu”) ---
+export const zonaDeservita = {
+  intro:
+    'Lucrez la sediul clientului sau la punctul de lucru convenit, pentru companii din județul Sibiu:',
+  localitati: [
+    'Sibiu',
+    'Cisnădie',
+    'Șelimbăr',
+    'Cristian',
+    'Ocna Sibiului',
+    'Avrig',
+    'Mediaș',
+    'Agnita',
+  ],
+  nota: 'Pentru proiecte mai ample, deplasarea în alte județe se poate discuta.',
+}
 
 // --- Experiență (timeline) ---
 export const experientaSubtitlu =
