@@ -17,7 +17,7 @@ if (!existsSync(caleServer)) {
   process.exit(1)
 }
 
-const { render } = await import(pathToFileURL(caleServer).href)
+const { render, dateStructurate } = await import(pathToFileURL(caleServer).href)
 const continut = render()
 
 const html = readFileSync(caleIndex, 'utf-8')
@@ -28,6 +28,22 @@ if (!html.includes(tinta)) {
   process.exit(1)
 }
 
-writeFileSync(caleIndex, html.replace(tinta, `<div id="root">${continut}</div>`))
+let rezultat = html.replace(tinta, `<div id="root">${continut}</div>`)
 
-console.log(`[prerender] Continut injectat in dist/index.html (${continut.length} caractere)`)
+// Datele structurate pentru intrebarile frecvente sunt generate din content.js,
+// nu scrise de mana in index.html, ca sa nu ramana in urma fata de pagina.
+const faq = dateStructurate()
+if (!rezultat.includes('</head>')) {
+  console.error('[prerender] Nu am gasit </head> in dist/index.html')
+  process.exit(1)
+}
+rezultat = rezultat.replace(
+  '</head>',
+  `  <script type="application/ld+json">${faq}</script>\n  </head>`,
+)
+
+writeFileSync(caleIndex, rezultat)
+
+console.log(
+  `[prerender] Continut injectat in dist/index.html (${continut.length} caractere) + FAQPage (${faq.length})`,
+)

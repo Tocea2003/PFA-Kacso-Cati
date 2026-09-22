@@ -7,6 +7,7 @@ const linkuri = [
   { href: '#servicii', text: 'Servicii' },
   { href: '#experienta', text: 'Experiență' },
   { href: '#despre', text: 'Despre' },
+  { href: '#intrebari', text: 'Întrebări' },
   { href: '#contact', text: 'Contact' },
 ]
 

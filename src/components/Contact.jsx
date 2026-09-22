@@ -55,7 +55,7 @@ export default function Contact() {
   return (
     <section className="sectiune sectiune--gri" id="contact">
       <div className="container">
-        <AntetSectiune numar="04" titlu="Contact" subtitlu={'Completați formularul, iar mesajul va fi trimis direct pe WhatsApp cu datele deja scrise.'} />
+        <AntetSectiune numar="05" titlu="Contact" subtitlu={'Completați formularul, iar mesajul va fi trimis direct pe WhatsApp cu datele deja scrise.'} />
 
         <div className="contact__grid">
           <Reveal className="contact__info" variant="left">

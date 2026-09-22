@@ -6,7 +6,24 @@
 // in build-ul de client.
 import { renderToStaticMarkup } from 'react-dom/server'
 import App from './App.jsx'
+import { intrebari } from './data/content.js'
 
 export function render() {
   return renderToStaticMarkup(<App />)
+}
+
+// Datele structurate FAQPage, construite din acelasi `intrebari` care
+// randeaza sectiunea. Google cere ca raspunsul din JSON sa existe identic in
+// pagina; generandu-le din aceeasi sursa, nu au cum sa se desincronizeze.
+export function dateStructurate() {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': 'https://controlcalitatesibiu.ro/#intrebari',
+    mainEntity: intrebari.map((item) => ({
+      '@type': 'Question',
+      name: item.intrebare,
+      acceptedAnswer: { '@type': 'Answer', text: item.raspuns },
+    })),
+  })
 }

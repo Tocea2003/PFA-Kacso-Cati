@@ -40,7 +40,7 @@ export const dimensiuniPoze = {
 // --- Secțiunea Hero ---
 export const hero = {
   eyebrow: 'PFA autorizată • Cisnădie, jud. Sibiu',
-  titlu: 'Control calitate și verificare produse în Sibiu',
+  titlu: 'Control calitate produse în Sibiu',
   subtitlu:
     'Peste 20 de ani de experiență în controlul calității, sortarea și verificarea produselor, analiza defectelor și suport pentru procesele de producție. Servicii pentru companii din Sibiu, Cisnădie și împrejurimi, adaptate nevoilor fiecărui client.',
   imagine: poza('hero'),
@@ -133,6 +133,56 @@ export const zonaDeservita = {
   ],
   nota: 'Pentru proiecte mai ample, deplasarea în alte județe se poate discuta.',
 }
+
+// --- Întrebări frecvente ---
+// Răspunsurile de aici ajung și în datele structurate (FAQPage), generate la
+// build din acest fișier — vezi src/entry-server.jsx. Deci se scriu o
+// singură dată: textul de pe pagină și cel trimis către Google nu pot diverge.
+export const intrebariSubtitlu =
+  'Cele mai frecvente întrebări primite de la companiile din Sibiu care externalizează controlul calității.'
+
+export const intrebari = [
+  {
+    intrebare: 'Ce înseamnă, concret, serviciul de control calitate produse?',
+    raspuns:
+      'Verific produsele bucată cu bucată sau pe eșantion, vizual și dimensional, separ piesele conforme de cele cu neconformități și predau lotul însoțit de evidența rezultatelor. Unde este nevoie, se adaugă reprelucrarea (rework) pieselor recuperabile.',
+  },
+  {
+    intrebare: 'Lucrați la sediul clientului sau produsele trebuie transportate?',
+    raspuns:
+      'Lucrez la sediul clientului sau la punctul de lucru convenit, ca produsele să nu iasă din fluxul dumneavoastră. Deplasarea se face în Sibiu, Cisnădie și în restul județului Sibiu.',
+  },
+  {
+    intrebare: 'În ce localități din județul Sibiu vă deplasați?',
+    raspuns:
+      'Sibiu, Cisnădie, Șelimbăr, Cristian, Ocna Sibiului, Avrig, Mediaș și Agnita. Pentru proiecte mai ample, deplasarea în alte județe se poate discuta.',
+  },
+  {
+    intrebare: 'Ce tipuri de produse verificați?',
+    raspuns:
+      'Piese și subansamble industriale, inclusiv produse complexe din domeniul auto și electronic — am experiență pe verificarea unităților de tip DQ200 TCU. Cerințele exacte se stabilesc pe baza specificației și a desenului dumneavoastră.',
+  },
+  {
+    intrebare: 'Ce instrumente de măsurare folosiți la verificarea dimensională?',
+    raspuns:
+      'Instrumente de precizie uzuale în producție — șubler și micrometru — plus calibrele și dispozitivele de verificare puse la dispoziție de client, conform toleranțelor din specificație.',
+  },
+  {
+    intrebare: 'Primesc raport de calitate la finalul acțiunii?',
+    raspuns:
+      'Da. Întocmesc documentația și rapoartele de calitate, cu evidența rezultatelor pe loturi și a acțiunilor corective aplicate. Am experiență în metodologia 8D și în analiza cauzelor pentru reclamații interne și externe.',
+  },
+  {
+    intrebare: 'Cât costă o acțiune de sortare sau de verificare?',
+    raspuns:
+      'Tariful se stabilește în funcție de tipul produsului, volumul lotului, durata acțiunii și locul de desfășurare. Scrieți-mi pe WhatsApp sau prin formularul de pe pagină cu aceste detalii și primiți o ofertă.',
+  },
+  {
+    intrebare: 'Puteți prelua o acțiune de sortare urgentă?',
+    raspuns:
+      'Disponibilitatea pentru acțiuni urgente se confirmă la solicitare, în funcție de programul curent. Cel mai rapid răspuns îl primiți pe WhatsApp, la 0752 291 659.',
+  },
+]
 
 // --- Experiență (timeline) ---
 export const experientaSubtitlu =
